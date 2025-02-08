@@ -3,16 +3,18 @@ name: Deploy LMS
 on:
   push:
     branches:
-      - develop
+      - develop  # Это будет триггерить деплой при пуше в develop
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Запускать на Ubuntu в GitHub Actions
 
     steps:
+      # Шаг 1: Клонировать код из репозитория
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # Шаг 2: Установить WireGuard (если нужно)
       - name: WireGuard connection
         run: |
           sudo apt update
@@ -20,16 +22,21 @@ jobs:
           echo "${{ secrets.WIREGUARD_CONFIG }}" | sudo tee /etc/wireguard/wg0.conf > /dev/null
           sudo wg-quick up wg0
 
+      # Шаг 3: Настроить SSH для подключения к серверу
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
 
+      # Шаг 4: Копирование файлов на сервер с помощью rsync
       - name: Deploy LMS
         env:
           SERVER_IP: ${{ secrets.SERVER_IP }}
           USERNAME: ${{ secrets.USERNAME }}
         run: |
-          rsync -avz -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" ./ $USERNAME@$SERVER_IP:/path/to/lms
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no $USERNAME@$SERVER_IP "cd /path/to/lms && docker-compose up -d --build"
+          # Копирование файлов с помощью rsync
+          rsync -avz -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" ./ $USERNAME@$SERVER_IP:/var/www/lms
+
+          # Запуск Docker на сервере
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no $USERNAME@$SERVER_IP "cd /var/www/lms && docker-compose up -d --build"
