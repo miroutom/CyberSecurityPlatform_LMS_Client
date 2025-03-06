@@ -2,7 +2,7 @@
 
 CyberSec Platform is a comprehensive platform for cybersecurity educational purposes, featuring a web page and an LMS Android application. 
 
-## 🚀 Features | Особенности
+## 🚀 Features
 
 - 🔒 **Interactive labs** covering various aspects of cybersecurity.  
 - 📱 **LMS Android app** for convenient mobile learning.
@@ -11,11 +11,11 @@ CyberSec Platform is a comprehensive platform for cybersecurity educational purp
   
 ## 📥 Installation & Launch
 
-### 🖥️ Web Application | Веб-приложение
+### 🖥️ Web Application 
 
-### 📱 Android Application | Android-приложение
+### 📱 Android Application
 
-## 🔧 Technology Stack | Технологии
+## 🔧 Technology Stac
 
 - **Backend**: 
 - **Frontend**: 
@@ -23,7 +23,5 @@ CyberSec Platform is a comprehensive platform for cybersecurity educational purp
 - **Mobile**: 
 - **CI/CD**: 
 
-## 🌍 Language Switching | Переключение языка
-
-## 📧 Contacts | Контакты
+## 📧 Contacts
 - Email:  
