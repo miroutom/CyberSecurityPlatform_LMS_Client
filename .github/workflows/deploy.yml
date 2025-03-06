@@ -14,18 +14,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: WireGuard connection
-        run: |
-          sudo apt update
-          sudo apt install -y wireguard
-          echo "${{ secrets.WIREGUARD_CONFIG }}" | sudo tee /etc/wireguard/wg0.conf > /dev/null
-          sudo wg-quick up wg0
-          
-      - name: Show WireGuard status
-        run: |
-          sudo systemctl status wg-quick@wg0.service
-          sudo wg show
-
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
