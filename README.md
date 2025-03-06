@@ -10,12 +10,15 @@ CyberSec Platform is a comprehensive platform for cybersecurity educational purp
 - 📊 **User statistics tracking** for checking your progress during the education.
   
 ## 📥 Installation & Launch
+not implemented
 
-### 🖥️ Web Application 
+## 🖥️ Web Application 
+not implemented
 
-### 📱 Android Application
+## 📱 Android Application
+not implemented
 
-## 🔧 Technology Stac
+## 🔧 Technology Stack
 
 - **Backend**: 
 - **Frontend**: 
@@ -24,4 +27,4 @@ CyberSec Platform is a comprehensive platform for cybersecurity educational purp
 - **CI/CD**: 
 
 ## 📧 Contacts
-- Email:  
+- Email: 
