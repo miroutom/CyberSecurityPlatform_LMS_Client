@@ -1,5 +1,5 @@
 # CyberSec Platform ![Work in Progress](https://img.shields.io/badge/status-WIP-yellow)
-![English](https://img.shields.io/badge/lang-English-blue) ![Русский](https://img.shields.io/badge/lang-Russian-red)
+[![English](https://img.shields.io/badge/lang-English-blue)](README.md) [![Русский](https://img.shields.io/badge/lang-Russian-red)](README.ru.md)
 
 CyberSec Platform is a comprehensive platform for cybersecurity educational purposes, featuring a web page and an LMS Android application. 
 
