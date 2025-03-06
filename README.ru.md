@@ -1,7 +1,7 @@
 # CyberSec Platform ![Work in Progress](https://img.shields.io/badge/status-WIP-yellow)
 [![English](https://img.shields.io/badge/lang-English-blue)](README.md) [![Русский](https://img.shields.io/badge/lang-Russian-red)](README.ru.md)
 
-CyberSec Labs Platform — это комплексная платформа для обучения кибербезопасности, включающая веб-версию и мобильное LMS-приложение для Android.
+CyberSec Platform — это комплексная платформа для обучения кибербезопасности, включающая веб-версию и мобильное LMS-приложение для Android.
 
 ## 🚀 Features
 
