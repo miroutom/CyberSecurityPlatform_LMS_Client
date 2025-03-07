@@ -3,7 +3,7 @@ name: Deploy LMS
 on:
   push:
     branches:
-      - develop  
+      - develop
       - main
 
 jobs:
@@ -21,12 +21,15 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           echo "${{ secrets.KNOWN_HOSTS }}" > ~/.ssh/known_hosts
 
-      - name: Connect to server by ssh
+      - name: Prepare server directory
         env:
           SERVER_IP: ${{ secrets.SERVER_IP }}
           USERNAME: ${{ secrets.USERNAME }}
+          SERVER_DIR: ${{ secrets.SERVER_DIR }}
         run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 1337 $USERNAME@$SERVER_IP "echo 'Connected from GitHub!'"
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 1337 $USERNAME@$SERVER_IP "
+            sudo chown $USERNAME:$USERNAME $SERVER_DIR
+          "
 
       - name: Copy files to server
         env:
@@ -41,8 +44,8 @@ jobs:
           SERVER_IP: ${{ secrets.SERVER_IP }}
           USERNAME: ${{ secrets.USERNAME }}
         run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 1337 $USERNAME@$SERVER_IP "
-            cd ${{ secrets.SERVER_DIR }} &&
+          ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 1337 $USERNAME@$SERVER_IP "
+            cd $SERVER_DIR &&
             npm install &&
             pm2 restart all
           "
