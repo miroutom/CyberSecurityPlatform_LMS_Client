@@ -45,7 +45,6 @@ jobs:
           USERNAME: ${{ secrets.USERNAME }}
         run: |
           ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 1337 $USERNAME@$SERVER_IP "
-            export PATH=$PATH:/usr/local/bin &&
             cd $SERVER_DIR &&
             npm install &&
             pm2 restart all
