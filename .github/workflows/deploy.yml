@@ -28,25 +28,27 @@ jobs:
           SERVER_DIR: ${{ secrets.SERVER_DIR }}
         run: |
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 1337 $USERNAME@$SERVER_IP "
-            sudo chown $USERNAME:$USERNAME $SERVER_DIR
+            sudo chown $USERNAME:$USERNAME $SERVER_DIR || exit 1
           "
 
-      - name: Copy files to server
+      - name: Build backend
+        run: go build -o lms_back
+
+      - name: Upload to server
         env:
           SERVER_IP: ${{ secrets.SERVER_IP }}
           USERNAME: ${{ secrets.USERNAME }}
           SERVER_DIR: ${{ secrets.SERVER_DIR }}
         run: |
-          scp -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -P 1337 -r ./ $USERNAME@$SERVER_IP:$SERVER_DIR
+          scp -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -P 1337 lms_back $USERNAME@$SERVER_IP:$SERVER_DIR
 
-      - name: Install dependencies and restart service
+      - name: Restart backend service
         env:
           SERVER_IP: ${{ secrets.SERVER_IP }}
           USERNAME: ${{ secrets.USERNAME }}
+          SERVER_DIR: ${{ secrets.SERVER_DIR }}
         run: |
           ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 1337 $USERNAME@$SERVER_IP "
-            cd $SERVER_DIR &&
-            npm install &&
-            pm2 restart all
+            sudo systemctl restart lms_back || 
+            (sudo pkill lms_back; nohup $SERVER_DIR/lms_back > /dev/null 2>&1 &)
           "
-
