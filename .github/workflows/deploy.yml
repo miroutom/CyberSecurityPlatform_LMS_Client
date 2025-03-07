@@ -34,7 +34,7 @@ jobs:
           USERNAME: ${{ secrets.USERNAME }}
           SERVER_DIR: ${{ secrets.SERVER_DIR }}
         run: |
-          scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -P 1337 -r ./ $USERNAME@$SERVER_IP:$SERVER_DIR
+          scp -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -P 1337 -r ./ $USERNAME@$SERVER_IP:$SERVER_DIR
 
       - name: Install dependencies and restart service
         env:
