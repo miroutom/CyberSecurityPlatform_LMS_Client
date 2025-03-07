@@ -19,10 +19,23 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
+          echo "${{ secrets.KNOWN_HOSTS }}" > ~/.ssh/known_hosts
 
-      - name: Connect to server by ssh
+      - name: Copy files to server
+        env:
+          SERVER_IP: ${{ secrets.SERVER_IP }}
+          USERNAME: ${{ secrets.USERNAME }}
+          SERVER_DIR: ${{ secrets.SERVER_DIR }}
+        run: |
+          scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 1337 -r ./ $USERNAME@$SERVER_IP:$SERVER_DIR
+
+      - name: Install dependencies and restart service
         env:
           SERVER_IP: ${{ secrets.SERVER_IP }}
           USERNAME: ${{ secrets.USERNAME }}
         run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 1337 $USERNAME@$SERVER_IP "echo 'Connected from GitHub!'"
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 1337 $USERNAME@$SERVER_IP "
+            cd ${{ secrets.SERVER_DIR }} &&
+            npm install &&
+            pm2 restart all
+          "
