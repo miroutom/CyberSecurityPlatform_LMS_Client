@@ -21,11 +21,11 @@ not implemented
 
 ## 🔧 Стэк технологий
 
-- **Backend**: 
+- **Backend**: Go, Gin Web Framework
 - **Frontend**: 
 - **Database**: 
-- **Mobile**: 
-- **CI/CD**: 
+- **Mobile**: Android SDK, REST API, Jetpack Compose
+- **CI/CD**: GitHub Actions
 
 ## 📧 Контакты
 - Email:  

@@ -3,7 +3,7 @@ name: Deploy LMS
 on:
   push:
     branches:
-      - develop  
+      - develop
       - main
 
 jobs:
@@ -19,10 +19,36 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
+          echo "${{ secrets.KNOWN_HOSTS }}" > ~/.ssh/known_hosts
 
-      - name: Connect to server by ssh
+      - name: Prepare server directory
         env:
           SERVER_IP: ${{ secrets.SERVER_IP }}
           USERNAME: ${{ secrets.USERNAME }}
+          SERVER_DIR: ${{ secrets.SERVER_DIR }}
         run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 1337 $USERNAME@$SERVER_IP "echo 'Connected from GitHub!'"
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 1337 $USERNAME@$SERVER_IP "
+            sudo chown $USERNAME:$USERNAME $SERVER_DIR || exit 1
+          "
+
+      - name: Build backend
+        run: go build -o lms_back
+
+      - name: Upload to server
+        env:
+          SERVER_IP: ${{ secrets.SERVER_IP }}
+          USERNAME: ${{ secrets.USERNAME }}
+          SERVER_DIR: ${{ secrets.SERVER_DIR }}
+        run: |
+          scp -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -P 1337 lms_back $USERNAME@$SERVER_IP:$SERVER_DIR
+
+      - name: Restart backend service
+        env:
+          SERVER_IP: ${{ secrets.SERVER_IP }}
+          USERNAME: ${{ secrets.USERNAME }}
+          SERVER_DIR: ${{ secrets.SERVER_DIR }}
+        run: |
+          ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 1337 $USERNAME@$SERVER_IP "
+            sudo systemctl restart lms_back || 
+            (sudo pkill lms_back; nohup $SERVER_DIR/lms_back > /dev/null 2>&1 &)
+          "
