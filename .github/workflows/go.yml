@@ -7,8 +7,12 @@ on:
       - main
     paths:
       - '**.go'
-      - 'go.mod'
-      - 'go.sum'
+  push:
+    branches:
+      - develop
+      - main
+    paths:
+      - '**.go'
 
 jobs:
   lint:

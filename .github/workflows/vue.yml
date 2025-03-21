@@ -7,6 +7,12 @@ on:
       - main
     paths:
       - 'cybersecurity_frontend/**'
+  push:
+    branches:
+      - develop
+      - main
+    paths:
+      - 'cybersecurity_frontend/**'
 
 jobs:
   lint:
