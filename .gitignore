@@ -1,42 +1,58 @@
-# ignore generated files
+# Ignore generated files
 .gradle/
 .idea/
 build/
 *.iml
 *.log
 
-# ignore local settings
+# Ignore local settings
 local.properties
 
-# ignore gradle cache
+# Ignore Gradle cache
 .cache/
 
-# ignore builds
+# Ignore build output files (APK, AAB, etc.)
 *.apk
 *.aab
 *.keystore
 
-# ignore specific Android Studio files
+# Ignore Android Studio-specific files
 *.swp
 *.swo
 *.class
 *.lock
 
-# ignore specific Gradle files
+# Ignore Gradle-specific files
 .gradle-wrapper/
 gradle-wrapper.jar
 gradlew
 gradlew.bat
 
-# ignore specific Kotlin files
+# Ignore Kotlin-specific files
 *.kotlin_module
 *.kts
 
-# ignore specific NDK files
+# Ignore NDK-specific files
 obj/
 libs/
 *.so
 
-# ignore test data
+# Ignore test data
 **/test-results/
 **/test-output/
+
+# Ignore temporary files
+**/tmp/
+**/temp/
+
+# Ignore user-specific settings
+**/.DS_Store
+**/.idea/
+**/*.log
+**/*.orig
+
+# Ignore generated resource files
+**/app/build/generated/
+**/app/build/intermediates/
+**/app/build/outputs/
+**/app/build/reports/
