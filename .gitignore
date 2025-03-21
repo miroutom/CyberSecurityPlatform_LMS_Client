@@ -56,7 +56,3 @@ libs/
 **/app/build/intermediates/
 **/app/build/outputs/
 **/app/build/reports/
-
-# Ignore Go generated files
-*.mod
-*.sum
