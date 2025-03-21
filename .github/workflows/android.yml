@@ -43,7 +43,7 @@ jobs:
 
   static-code-analysis:
     name: Perform static code analysis
-    needs: [lint]
+    needs: [start]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the code
@@ -55,7 +55,7 @@ jobs:
           java-version: '17'
 
       - name: Ktlint Check
-        run: ./gradlew ktlintCheck
+        run: ./gradlew ktlint
 
   build-debug-apk:
     name: Build Debug APK

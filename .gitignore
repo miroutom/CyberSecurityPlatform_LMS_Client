@@ -1,36 +1,22 @@
-# Ignore generated files
+# Ignore Gradle cache
 .gradle/
-.idea/
+.cache/
+
+# Ignore build output files (APK, AAB, etc.)
 build/
-*.iml
-*.log
 
 # Ignore local settings
 local.properties
 
-# Ignore Gradle cache
-.cache/
-
-# Ignore build output files (APK, AAB, etc.)
-*.apk
-*.aab
-*.keystore
-
 # Ignore Android Studio-specific files
+*.iml
 *.swp
 *.swo
 *.class
 *.lock
 
-# Ignore Gradle-specific files
-.gradle-wrapper/
-gradle-wrapper.jar
-gradlew
-gradlew.bat
-
 # Ignore Kotlin-specific files
 *.kotlin_module
-*.kts
 
 # Ignore NDK-specific files
 obj/
