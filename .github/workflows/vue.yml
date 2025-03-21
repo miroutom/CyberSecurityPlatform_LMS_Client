@@ -2,16 +2,12 @@ name: Vue Lint
 
 on:
   push:
-    branches:
-      - develop
-      - main
+    branches: [main, develop]
     paths:
       - 'cybersecurity_frontend/**'
 
   pull_request:
-    branches:
-      - develop
-      - main
+    branches: [main, develop]
     paths:
       - 'cybersecurity_frontend/**'
 
