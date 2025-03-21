@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="button_disabled">#E1E1E3</color>
+    <color name="button_enabled">#3764ED</color>
+    <color name="supporting_text">#8A8A92</color>
+    <color name="text_disabled">#E1E1E3</color>
+    <dimen name="corner_radius_large">32dp</dimen>
+    <dimen name="corner_radius_medium">16dp</dimen>
+    <dimen name="corner_radius_small">8dp</dimen>
+    <dimen name="text_size_large">16sp</dimen>
+    <dimen name="text_size_medium">14sp</dimen>
+    <dimen name="text_size_small">12sp</dimen>
+    <dimen name="title_large_font_size">40sp</dimen>
+    <string name="app_name">CyberSecPlatform</string>
+    <string name="auth_label_error">Неверный</string>
+    <string name="auth_label_password">Пароль</string>
+    <string name="auth_label_phone_number_email">Номер телефона/e-mail</string>
+    <string name="auth_password_error_length">Пароль должен содержать не менее 8 символов</string>
+    <string name="auth_password_error_no_lowercase_letters">Пароль должен содержать хотя бы одну строчную букву</string>
+    <string name="auth_password_error_no_numbers">Пароль должен содержать хотя бы одну цифру</string>
+    <string name="auth_password_error_no_symbols">Пароль должен содержать хотя бы один специальный символ (!@#$%^&amp;.*)</string>
+    <string name="auth_password_error_no_uppercase_letters">Пароль должен содержать хотя бы одну заглавную букву</string>
+    <style name="Theme.CyberSecPlatform" parent="android:Theme.Material.Light.NoActionBar"/>
+</resources>
